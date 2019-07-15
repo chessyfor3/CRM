@@ -1,0 +1,29 @@
+﻿@model CRM.Models.Customer
+@{
+    Layout = null;
+}
+
+<div class="card card-fluid">
+    <!-- .card-body -->
+    <div class="card-body text-center">
+        <!-- .user-avatar -->
+        <a href="user-profile.html" class="user-avatar my-3">
+            <img src="~/Images/cool.jpg" alt="User Avatar" class="rounded-circle user-avatar-xl" width="128" height="128">
+        </a>
+        <!-- /.user-avatar -->
+        <h3 class="card-title mb-2 text-truncate">
+            <a href="user-profile.html">@Model.name</a>
+        </h3>
+        <h6 class="card-subtitle text-muted mb-3">@Model.address </h6>
+        <!-- .skills -->
+        <p class="skills">
+            <a href="#" class="btn btn-xs btn-outline-secondary mt-1">@Model.industry (Industry)</a>
+            <a href="#" class="btn btn-xs btn-outline-secondary mt-1">@Model.business_type (Business)</a>
+            <a href="#" class="btn btn-xs btn-outline-secondary mt-1">@Model.customer_type (Customer)</a>
+        </p>
+        <!-- /.skills -->
+        <p class="text-muted"><strong>Email Address: </strong>@Model.email </p>
+        <p class="text-muted"><strong>Contact Number: </strong>@Model.phone </p>
+    </div>
+    <!-- /.card-body -->
+</div>

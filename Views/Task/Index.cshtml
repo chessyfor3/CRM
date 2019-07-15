@@ -1,0 +1,107 @@
+﻿@model IEnumerable<CRM.Models.Task>
+
+@{
+    ViewBag.Title = "Tasks";
+}
+
+@section css{
+    <link href="~/Content/datatables/datatable.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+    <script src="~/Content/datatables/datatable.js"></script>
+    <script src="~/Scripts/inc/task.js"></script>
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Tasks</h2>
+
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Sales</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tasks</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">
+                    <a href="#" onclick="getToday()" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#bigModal">
+                        <i class="fa fa-calendar-check"></i>
+                        Today
+                    </a>
+                    @if (Session["job_title"].Equals("Manager"))
+                    {
+                        <a href="#" onclick="getFinished()" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#bigModal">
+                            <i class="fa fa-check-circle"></i>
+                            Finished
+                        </a>
+                    }
+                    <a href="#" onclick="getCreate()" class="btn btn-sm btn-success float-right" id="add" data-toggle="modal" data-target="#bigModal">
+                        <i class="fa fa-plus"></i>
+                        Add
+                    </a>
+                </h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered first" id="tasksTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Title</th>
+                                    <th width="20%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var task in Model)
+                                {
+                                    if (0 == task.deleted)
+                                    {
+                                <tr id="@task.ID">
+                                    <td>@task.date.ToShortDateString()</td>
+                                    <td>@task.title</td>
+
+
+                                    <td>
+                                        <a href="#" onclick="viewTask(@task.ID)" class="btn btn-sm btn-outline-dark" id="viewPromo" data-toggle="modal" data-target="#bigModal">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        &nbsp; | &nbsp;
+                                        <a href="#" onclick="editTask(@task.ID,this)" class="btn btn-sm btn-outline-info" id="editPromo" data-toggle="modal" data-target="#bigModal">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        &nbsp; | &nbsp;
+                                        <a href="#" onclick="deleteTask(@task.ID,this)" class="btn btn-sm btn-outline-danger" id="deletePromo">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                    }
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Task</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

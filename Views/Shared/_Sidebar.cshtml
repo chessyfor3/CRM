@@ -1,0 +1,28 @@
+﻿<div class="nav-left-sidebar sidebar-primary">
+    <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-default">
+            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-divider">
+                        Menu
+                    </li>
+                    <!-- Menus -->
+                    <li class="nav-item"><a class="nav-link" href="/"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Customer"><i class="fa fa-fw fa-users"></i>Customers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Deal"><i class="fas fa-fw fa-handshake"></i>Deals</a></li>
+                    @if (Session["job_title"].Equals("Manager"))
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Promotion"><i class="fas fa-fw fa-tags"></i>Promotions </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Activity"><i class="fas fa-fw fa-boxes"></i>Activities </a></li>
+                    }
+
+                    <li class="nav-item"><a class="nav-link" href="/Task"><i class="fas fa-fw fa-tasks"></i>Tasks</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model CRM.Models.Deal
+
+@{ 
+    var customer = ViewData["customer"] as CRM.Models.Customer;
+    Layout = null;
+}
+<div class="card mb-3" style="max-width: 760px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/Images/deal.png" class="card-img" alt="image" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Title: @Model.title</h5>
+                @if (Session["job_title"].Equals("Manager"))
+                {
+                    var agent = ViewData["agent"] as CRM.Models.User;
+
+                    <p class="card-text"><strong>Agent:</strong> @agent.name</p>
+                }
+
+                <p class="card-text"><strong>Description:</strong> @Model.description</p>
+                <p class="card-text">
+                    <strong>Stage:</strong> <span id="stage">@Model.stage</span> 
+                    @if (!Model.stage.Equals("Closed"))
+                    {
+                        <a href="#" id="upgrade" onclick="dealUpgrade(@Model.ID)"><span id="next-stage" class="badge badge-warning">@ViewData["next-stage"]</span></a>
+                    }
+
+                </p>
+                <p class="card-text"><strong>Value:</strong> @Model.value</p>
+                <p class="card-text"><strong>Closing Probability:</strong> @Model.closing_probability %</p>
+                <p class="card-text"><strong>Expected Closing: </strong>@Model.expected_closing.ToLongDateString()</p>
+                <p class="card-text"><strong>Promo:</strong> @Model.promo_code</p>
+                <p class="card-text"><strong>Customer:</strong><a href="#"> @customer.name</a></p>
+                <p class="card-text"><strong>Date Created:</strong>@Model.date_created</p>
+                <p class="card-text"><strong>Last Updated:</strong> @Model.date_updated</p>
+            </div>
+        </div>
+    </div>
+</div>

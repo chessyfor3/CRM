@@ -1,0 +1,44 @@
+﻿@model CRM.Models.Promotion
+@{ 
+    Layout = null;
+}
+<form>
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">Name</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <input type="text" required="" name="name" id="name" class="form-control input" value="@Model.name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">Code</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <input type="text" required="" name="code" id="code" class="form-control input" value="@Model.code">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">Description</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <textarea required="" class="form-control input" name="description" id="description" placeholder="This is for the management. Write something about the promo...">@Model.description</textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">External Description</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <textarea required="" class="form-control input" name="ext_desc" id="ext_desc" placeholder="This is for the customers. Write something about the promo...">@Model.ext_desc</textarea>
+        </div>
+    </div>
+        
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">Valid from</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <input type="date" required="" name="start" id="start" class="form-control input" value="@Model.start.ToString("yyyy-MM-dd")">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right">Valid until</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+            <input type="date" required="" name="end" id="end" class="form-control input" value="@Model.end.ToString("yyyy-MM-dd")">
+        </div>
+    </div>
+    <input type="hidden" value="@Model.active" name="active" id="active"/>
+</form>

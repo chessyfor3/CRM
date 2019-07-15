@@ -1,0 +1,20 @@
+﻿@model CRM.Models.Task
+@{ 
+    Layout = null;
+}
+<div class="card mb-3" style="max-width: 760px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/Images/promotion.png" class="card-img" alt="image" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Title: @Model.title</h5>
+                <p class="card-text"><strong>Description:</strong> @Model.description</p>
+                <p class="card-text"><strong>Date: </strong>@Model.date.ToLongDateString()</p>
+                <button onclick="markDone(@Model.ID)" class="btn btn-rounded btn-sm btn-primary">Mark as done</button>
+            </div>
+        </div>
+    </div>
+</div>
+

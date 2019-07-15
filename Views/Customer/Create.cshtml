@@ -1,0 +1,174 @@
+﻿@model CRM.Models.Customer
+@{ 
+    Layout = null;
+}
+    <form>
+        
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Name</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="name" id="name" class="form-control input" value="@Model.name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Business</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select class="form-control form-control-sm input" name="business_type" id="business_type" required>
+                    <option>None</option>
+                    @if ("Service" == Model.business_type)
+                    {
+                        <option value="Service" selected>Service</option>
+                    }
+                    else
+                    {
+                        <option value="Service">Service</option>
+                    }
+                    @if ("Merchandising" == Model.business_type)
+                    {
+                        <option value="Merchandising" selected>Merchandising</option>
+                    }
+                    else
+                    {
+                        <option value="Merchandising">Merchandising</option>
+                    }
+                    @if ("Manufacturing" == Model.business_type)
+                    {
+                        <option value="Manufacturing" selected>Manufacturing</option>
+                    }
+                    else
+                    {
+                        <option value="Manufacturing">Manufacturing</option>
+                    }
+                    @if ("Others" == Model.business_type)
+                    {
+                        <option value="Others" selected>Others</option>
+                    }
+                    else
+                    {
+                        <option value="Others">Others</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Industry</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select class="form-control form-control-sm input" name="industry" id="industry" required>
+                    <option>None</option>
+                    
+                    @if ("Primary" == Model.industry)
+                    {
+                        <option value="Primary" selected>Primary</option>
+                    }
+                    else
+                    {
+                        <option value="Primary">Primary</option>
+                    }
+                    @if ("Secondary" == Model.industry)
+                    {
+                        <option value="Secondary" selected>Secondary</option>
+                    }
+                    else
+                    {
+                        <option value="Secondary">Secondary</option>
+                    }
+                    @if ("Tertiary" == Model.industry)
+                    {
+                        <option value="Tertiary" selected>Tertiary</option>
+                    }
+                    else
+                    {
+                        <option value="Tertiary">Tertiary</option>
+                    }
+                    @if ("Quaternary" == Model.industry)
+                    {
+                        <option value="Quaternary" selected>Quaternary</option>
+                    }
+                    else
+                    {
+                        <option value="Quaternary">Quaternary</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Email</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="email" required="" name="email" id="email" class="form-control input" value="@Model.email">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Phone</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="phone" id="phone" class="form-control input" value="@Model.phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Street</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="street" id="street" class="form-control input" value="@Model.street">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">City</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="city" id="city" class="form-control input" value="@Model.city">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Zip Code</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="zip" id="zip" class="form-control input" value="@Model.zip">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Customer Type</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select class="form-control form-control-sm input" name="customer_type" id="customer_type" required>
+                    <option>Choose</option>
+                    @if ("Potential" == Model.customer_type)
+                    {
+                        <option value="Potential" selected>Potential</option>
+                    }
+                    else
+                    {
+                        <option value="Potential">Potential</option>
+                    }
+                    @if ("New" == Model.customer_type)
+                    {
+                        <option value="New" selected>New</option>
+                    }
+                    else
+                    {
+                        <option value="New">New</option>
+                    }
+                    @if ("Impulsive" == Model.customer_type)
+                    {
+                        <option value="Impulsive" selected>Impulsive</option>
+                    }
+                    else
+                    {
+                        <option value="Impulsive">Impulsive</option>
+                    }
+                    @if ("Discount" == Model.customer_type)
+                    {
+                        <option value="Discount" selected>Discount</option>
+                    }
+                    else
+                    {
+                        <option value="Discount">Discount</option>
+                    }
+                    @if ("Loyal" == Model.customer_type)
+                    {
+                        <option value="Loyal" selected>Loyal</option>
+                    }
+                    else
+                    {
+                        <option value="Loyal">Loyal</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+    </form>

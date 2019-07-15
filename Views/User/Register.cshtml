@@ -1,0 +1,171 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Registration | SalesRank</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link href="~/Content/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<!-- ============================================================== -->
+<!-- signup form  -->
+<!-- ============================================================== -->
+
+<body>
+    <!-- ============================================================== -->
+    <!-- signup form  -->
+    <!-- ============================================================== -->
+    
+    <form class="splash-container" data-parsley-validate="" action='/User/Register' method="post" novalidate>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-1">Registration Form</h3>
+                <p>Please enter your user information.</p>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.Message != null)
+                {
+                    <p class="alert alert-danger alert-dismissable">@ViewBag.Message</p>
+                }
+                @if (TempData["message"] != null)
+                {
+                    <p class="alert alert-danger alert-dismissable">@TempData["message"]</p>
+                }
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="firstname" required="" data-parsley-trigger="change" placeholder="First name" autocomplete="off">
+
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="lastname" required="" data-parsley-trigger="change" placeholder="Last name" autocomplete="off">
+
+                </div>
+                <div class="form-group">
+                    <select class="form-control form-control-sm input" name="job_title" id="job_title" required>
+                        <option value="Agent">Agent</option>
+                        <option value="Manager">Manager</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="company_id" required="" data-parsley-trigger="change" placeholder="Company ID" autocomplete="off">
+
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="street" required="" data-parsley-trigger="change" placeholder="Street Address" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="city" required="" data-parsley-trigger="change" placeholder="City" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="zip" required="" data-parsley-trigger="change" placeholder="Zip Code" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="email" id="email" name="email" data-parsley-trigger="change" required="" placeholder="E-mail" autocomplete="off">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="phone" required="" data-parsley-trigger="change" placeholder="Phone number" autocomplete="off">
+
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" id="username" name="username" required="" placeholder="Username" autocomplete="off">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" id="pass1" type="password" name="password" data-parsley-trigger="change" required="" placeholder="Password">
+
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" data-parsley-equalto="#pass1" id="cpass" data-parsley-trigger="change" type="password" required="" placeholder="Confirm Password">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group pt-2">
+                    <button class="btn btn-block btn-primary" type="submit" id="register">Register My Account</button>
+                </div>
+
+            </div>
+            <div class="card-footer bg-white">
+                <p>Already member? <a href="#" class="text-secondary">Login Here.</a></p>
+            </div>
+        </div>
+    </form>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/assets/vendor/parsley/parsley.js"></script>
+    <script src="~/Content/assets/libs/js/main-js.js"></script>
+    <script>
+        $('#email').on('change', function () {
+            if ($('#email').val() != "") {
+                checkEmail($('#email').val());
+            }
+        });
+        $('#username').on('change', function () {
+            if ($('#username').val() != "") {
+                checkUsername($('#username').val());
+            }
+            
+        });
+        function checkEmail(email)
+        {
+            $.post('/User/Email', { email: email }, function (data, status) {
+                
+                if ("found" == data.status) {
+                    $('#email').removeClass('is-valid');
+                    $('#email').addClass('is-invalid');
+                    $('#email').next().html('Email already taken.');
+                    $('#register').prop("disabled",true);
+                } else {
+                    $('#email').removeClass('is-invalid');
+                    $('#register').prop("disabled",false);
+                }
+            });
+        }
+        function checkUsername(username)
+        {
+            $.post('/User/Username', { username: username }, function (data, status) {
+                
+                if ("found" == data.status) {
+                    $('#username').removeClass('is-valid');
+                    $('#username').addClass('is-invalid');
+                    $('#username').next().html('Username already taken.');
+                    $('#register').prop("disabled",true);
+                } else {
+                    $('#username').removeClass('is-invalid');
+                    $('#username').addClass('is-valid');
+                    $('#register').prop("disabled",false);
+                }
+            });
+        }
+    </script>
+    
+</body>
+
+
+</html>

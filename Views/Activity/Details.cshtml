@@ -1,0 +1,26 @@
+﻿@model CRM.Models.Activity
+
+@{ 
+    var customer = ViewData["customer"] as CRM.Models.Customer;
+    var deal = ViewData["deal"] as CRM.Models.Deal;
+    var agent = ViewData["agent"] as CRM.Models.User;
+    Layout = null;
+}
+<div class="card mb-3" style="max-width: 760px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/Images/activity.png" class="card-img" alt="image" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Activity: @Model.type</h5>
+                <p class="card-text"><strong>Stage: </strong> @Model.stage</p>
+                <p class="card-text"><strong>Deal: </strong> @deal.title</p>
+                <p class="card-text"><strong>Customer: </strong> @customer.name</p>
+                <p class="card-text"><strong>Agent: </strong> @agent.name</p>
+                <p class="card-text"><strong>Date:</strong> @Model.date_created</p>
+            </div>
+        </div>
+    </div>
+</div>
+

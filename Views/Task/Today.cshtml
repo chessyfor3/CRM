@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CRM.Models.Task>
+@{
+    var agents = ViewData["agents"] as List<CRM.Models.User>;
+    Layout = null;
+}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="list-group">
+                @foreach (var task in Model)
+                {
+                    if (0 == task.deleted)
+                    {
+                        <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@task.title <small><a href="#" onclick="editTask(@task.ID,null)"><i class="fas fa-fw fa-edit"></i></a></small></h5>
+                                <small>Created: @task.date_created</small>
+                            </div>
+                            <p class="text-muted">Assigned: @agents.Find(a => a.ID == task.user_id).name</p>
+                            <p class="mb-1">@task.description</p>
+                            <div>
+                                <small>Last updated: @task.date_updated</small>
+                                <button onclick="markDone(@task.ID)" class="btn btn-sm btn-rounded btn-success float-right">Mark done</button>
+                            </div>
+                        </div>
+                    }
+                }
+
+
+            </div>
+        </div>
+    </div>

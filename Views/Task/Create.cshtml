@@ -1,0 +1,44 @@
+﻿@model CRM.Models.Task
+@{ 
+    var agents = ViewData["agents"] as List<CRM.Models.User>;
+    Layout = null;
+}
+    <form>
+        @if (Session["job_title"].Equals("Manager"))
+        {
+            <div class="form-group row">
+                <label class="col-12 col-sm-3 col-form-label text-sm-right">Agent</label>
+                <div class="col-12 col-sm-8 col-lg-6">
+                    <select class="form-control input" id="user_id">
+                        <option value='@Session["user_id"]'>Myself</option>
+                        @foreach (var agent in agents)
+                        {
+                            <option value='@agent.ID'>@agent.name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        }
+        else
+        {
+            <input type="hidden" id="user_id" value="@Model.user_id" />
+        }
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Title</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="text" required="" name="title" id="title" class="form-control input" value="@Model.title">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Description</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <textarea required="" class="form-control input" name="description" id="description" >@Model.description</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Date</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <input type="date" required="" name="date" id="date" class="form-control input" min="@Model.date.ToString("yyyy-MM-dd")" value="@Model.date.ToString("yyyy-MM-dd")">
+            </div>
+        </div>
+    </form>

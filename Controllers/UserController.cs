@@ -51,6 +51,10 @@ namespace CRM.Controllers
         // GET: User
         public ActionResult Login()
         {
+            if (Session["user_id"] != null)
+            {
+                return RedirectToAction("Index");
+            }
             return View();
         }
         [HttpPost]
